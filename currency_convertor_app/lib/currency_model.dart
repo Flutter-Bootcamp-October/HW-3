@@ -11,9 +11,9 @@ class Currency {
 
   factory Currency.fromJson(Map json) {
     return Currency(
-      id: json['id'],
-      currency: json['currency'],
-      price: json['price'],
+      id: json['id'] ?? 0,
+      currency: json['currency'] ?? "",
+      price: json['price'] ?? 0,
     );
   }
 }

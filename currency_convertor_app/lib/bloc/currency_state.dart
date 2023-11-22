@@ -1,12 +1,10 @@
-abstract class CurrencyState {
-  final double convert;
-  CurrencyState(this.convert);
-}
+abstract class CurrencyState {}
 
-class InitialState extends CurrencyState {
-  InitialState(super.convert);
-}
+class InitialState extends CurrencyState {}
 
 class UpdateState extends CurrencyState {
-  UpdateState(super.convert);
+  final double convert;
+  UpdateState({required this.convert});
 }
+
+class ErrorState extends CurrencyState {}

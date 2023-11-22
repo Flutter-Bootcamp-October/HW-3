@@ -14,25 +14,29 @@ class ConvertWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return InkWell(
-      onTap: action,
-      child: Container(
-        height: 85,
-        width: 95,
-        decoration: BoxDecoration(
-            color: Colors.white, borderRadius: BorderRadius.circular(15)),
-        child: Row(
-          children: [
-            ClipRRect(
-              child: Image.network(
-                imageURL,
-                height: 35,
-              ),
+    return Column(
+      children: [
+        InkWell(
+          onTap: action,
+          child: Container(
+            height: 55,
+            width: 85,
+            decoration: BoxDecoration(
+                color: Colors.white, borderRadius: BorderRadius.circular(15)),
+            child: Row(
+              children: [
+                ClipRRect(
+                  child: Image.network(
+                    imageURL,
+                    height: 35,
+                  ),
+                ),
+                Text(textEntry),
+              ],
             ),
-            Text(textEntry),
-          ],
+          ),
         ),
-      ),
+      ],
     );
   }
 }

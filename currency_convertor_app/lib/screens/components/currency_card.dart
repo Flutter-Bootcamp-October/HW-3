@@ -18,40 +18,10 @@ class CurrencyCard extends StatelessWidget {
           color: Colors.white,
           shape: const OutlineInputBorder(
               borderRadius: BorderRadius.all(Radius.circular(10))),
-          child: Padding(
-            padding: const EdgeInsets.all(10.0),
-            child: Center(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Row(
-                    children: [
-                      ClipRRect(
-                        child: Image.network(
-                          "https://cdn-icons-png.flaticon.com/512/323/323310.png",
-                          height: 35,
-                        ),
-                      ),
-                      const SizedBox(
-                        width: 5,
-                      ),
-                      Column(
-                        children: [
-                          Text("From"),
-                          Text("curency ${currency.price}"),
-                        ],
-                      ),
-                      const Spacer(),
-                      Column(
-                        children: [
-                          Text("To"),
-                          Text("curency ${currency.price}"),
-                        ],
-                      )
-                    ],
-                  ),
-                ],
-              ),
+          child: Center(
+            child: Text(
+              "${currency.price} ${currency.currency}",
+              style: TextStyle(fontSize: 18, fontWeight: FontWeight.w500),
             ),
           ),
         ));

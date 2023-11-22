@@ -32,7 +32,7 @@ class HomeScreen extends StatelessWidget {
         backgroundColor: Colors.white,
         onPressed: () {
           Navigator.push(context, MaterialPageRoute(builder: (context) {
-            return const ConvertScreen();
+            return ConvertScreen();
           }));
         },
         child: const Icon(
@@ -45,33 +45,53 @@ class HomeScreen extends StatelessWidget {
       body: Center(
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 15),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              const Text(
-                "Convert History",
-                style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 24,
-                    fontWeight: FontWeight.w600),
-              ),
-              const SizedBox(
-                height: 10,
-              ),
-              BlocBuilder<CurrencyBloc, CurrencyState>(
-                builder: (BuildContext context, CurrencyState state) {
-                  return ListView(
-                    scrollDirection: Axis.vertical,
-                    children: [
-                      for (var element in historyList)
-                        CurrencyCard(
-                          currency: element,
-                        )
-                    ],
-                  );
-                },
-              ),
-            ],
+          child: SingleChildScrollView(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                const Text(
+                  "Convert History",
+                  style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 24,
+                      fontWeight: FontWeight.w600),
+                ),
+                const SizedBox(
+                  height: 10,
+                ),
+                BlocBuilder<CurrencyBloc, CurrencyState>(
+                  builder: (context, state) {
+                    return ListView(
+                        shrinkWrap: true,
+                        physics: NeverScrollableScrollPhysics(),
+                        children: [
+                          if (historyList.isEmpty)
+                            const Center(
+                              child: Text(
+                                "No history found convert to\n view your convert history",
+                                style: TextStyle(
+                                    color: Colors.white, fontSize: 18),
+                              ),
+                            ),
+                          if (historyList.isNotEmpty)
+                            for (var element in historyList)
+                              CurrencyCard(
+                                currency: element,
+                              )
+
+                          //                       if(historyList.isEmpty){
+                          //                       return Text("data")
+                          //                     }else{
+                          //  for (var element in historyList)
+                          //                       CurrencyCard(
+                          //                         currency: element,
+                          //                       )
+                          //                     }
+                        ]);
+                  },
+                ),
+              ],
+            ),
           ),
         ),
       ),

@@ -7,6 +7,7 @@ abstract class CurrencyEvent {
 }
 
 
+
 class ConvertUSDEvent extends CurrencyEvent {
   ConvertUSDEvent(super.currency);
 }
