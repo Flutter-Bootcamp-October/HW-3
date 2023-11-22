@@ -1,5 +1,7 @@
+import 'package:currency_converter/currency.dart';
 import 'package:exchange/models/currency.dart';
 import 'package:flutter/material.dart';
+import 'package:icons_plus/icons_plus.dart';
 
 class DispalyExchange extends StatelessWidget {
   const DispalyExchange({
@@ -41,14 +43,32 @@ class DispalyExchange extends StatelessWidget {
                     "Result: ${exchange.result.toString()}",
                     style: const TextStyle(fontSize: 16, color: Colors.white),
                   ),
-                  Text(
-                    "From: ${exchange.from.toString()}",
-                    style: const TextStyle(fontSize: 16, color: Colors.white),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      exchange.from == Currency.usd
+                          ? Flag(Flags.united_states_of_america)
+                          : Flag(Flags.saudi_arabia),
+                      const SizedBox(
+                        width: 8,
+                      ),
+                      const Icon(Icons.arrow_forward_rounded),
+                      const SizedBox(
+                        width: 8,
+                      ),
+                      exchange.to == Currency.usd
+                          ? Flag(Flags.united_states_of_america)
+                          : Flag(Flags.saudi_arabia),
+                    ],
                   ),
-                  Text(
-                    "To: ${exchange.to.toString()}",
-                    style: const TextStyle(fontSize: 16, color: Colors.white),
-                  ),
+                  // Text(
+                  //   "From: ${exchange.from.toString()}",
+                  //   style: const TextStyle(fontSize: 16, color: Colors.white),
+                  // ),
+                  // Text(
+                  //   "To: ${exchange.to.toString()}",
+                  //   style: const TextStyle(fontSize: 16, color: Colors.white),
+                  // ),
                 ],
               ),
             )));
