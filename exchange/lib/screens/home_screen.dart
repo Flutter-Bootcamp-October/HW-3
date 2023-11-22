@@ -4,6 +4,7 @@ import 'package:exchange/models/currency.dart';
 import 'package:exchange/screens/history_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:icons_plus/icons_plus.dart';
 
 List<Exchage> exchangeList = [];
 Currency from = Currency.sar;
@@ -58,23 +59,65 @@ class HomeScreen extends StatelessWidget {
                   const SizedBox(
                     height: 16,
                   ),
+                  const Text(
+                    'Amount',
+                    style: TextStyle(
+                      color: Color(0xFF979797),
+                    ),
+                  ),
                   BlocBuilder<CurrencyBloc, CurrencyState>(
                     builder: (context, state) {
                       if (state is changeCurrncyState) {
                         from = state.from;
                         to = state.to;
-                        return Text(
-                          'Amount from ${state.from} to ${state.to} ',
-                          style: const TextStyle(
-                            color: Color(0xFF979797),
-                          ),
+                        return Column(
+                          children: [
+                            Center(
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  from == Currency.usd
+                                      ? Flag(Flags.united_states_of_america)
+                                      : Flag(Flags.saudi_arabia),
+                                  const SizedBox(
+                                    width: 8,
+                                  ),
+                                  const Icon(Icons.arrow_forward_rounded),
+                                  const SizedBox(
+                                    width: 8,
+                                  ),
+                                  to == Currency.usd
+                                      ? Flag(Flags.united_states_of_america)
+                                      : Flag(Flags.saudi_arabia),
+                                ],
+                              ),
+                            ),
+                          ],
                         );
                       }
-                      return Text(
-                        'Amount ${from.toString()} usd ${to.toString()} sar',
-                        style: const TextStyle(
-                          color: Color(0xFF979797),
-                        ),
+                      return Column(
+                        children: [
+                          Center(
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                from == Currency.usd
+                                    ? Flag(Flags.united_states_of_america)
+                                    : Flag(Flags.saudi_arabia),
+                                const SizedBox(
+                                  width: 8,
+                                ),
+                                const Icon(Icons.arrow_forward_rounded),
+                                const SizedBox(
+                                  width: 8,
+                                ),
+                                to == Currency.usd
+                                    ? Flag(Flags.united_states_of_america)
+                                    : Flag(Flags.saudi_arabia),
+                              ],
+                            ),
+                          ),
+                        ],
                       );
                     },
                   ),
