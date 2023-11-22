@@ -7,18 +7,23 @@ class ConverterBloc extends Bloc<ConverterEvent, ConverterState> {
   ConverterBloc() : super(ConvertState(result: "")) {
     on<ConvertEvent>((event, emit) {
       String result = "";
+      if (event.value.isNaN) {
+        print("hhhhhhhhhhhhhh");
+      }
       if (event.currentCurrencyType == "SAR") {
         if (event.convertedCurrency == "USD") {
           result = (event.value / 3.75).toStringAsFixed(2);
-        } else {
+        } else if (event.currentCurrencyType == "SAR") {
+          result = (event.value).toStringAsFixed(2);
+        }
+      } else if (event.convertedCurrency == "USD") {
+        if (event.convertedCurrency == "SAR") {
+          result = (event.value * 3.75).toStringAsFixed(2);
+        } else if (event.convertedCurrency == "USD") {
           result = (event.value).toStringAsFixed(2);
         }
       } else {
-        if (event.convertedCurrency == "SAR") {
-          result = (event.value * 3.75).toStringAsFixed(2);
-        } else {
-          result = (event.value).toStringAsFixed(2);
-        }
+        result = 'Error';
       }
       emit(ConvertState(result: result));
       history.add(
